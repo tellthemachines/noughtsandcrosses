@@ -1,0 +1,11 @@
+.square {
+  height: 40px;
+  width: 40px;
+  border: 1px solid grey;
+  background: #fff;
+  float:left;
+}
+
+.square:nth-child(3n+4) {
+  clear:both;
+}
