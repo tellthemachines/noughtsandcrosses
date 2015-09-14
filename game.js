@@ -32,21 +32,22 @@ var button;
     return allButtons;
   }
 
-
+  var tehBtns =  init(initNum);
 
   var clickResponse = function(){
-    var btnId = this.id.slice(2);
+    var btnId = this.id.slice(3);
     var status = counter%2==0?false:true;
-
-  // get button to change status 
+    tehBtns[btnId].status = status;
+    console.log(tehBtns[btnId]);
+    counter++;
+  // get button to change status
   }
 
-var tehBtns =  init(initNum);
-console.log(tehBtns);
+
+
 
       for (var j=0;j<initNum*initNum;j++){
         document.getElementById("btn" + j).onclick = clickResponse;
-
       }
 
 }());
