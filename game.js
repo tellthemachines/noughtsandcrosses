@@ -7,9 +7,11 @@ var button;
 
   function Button() {
     this.status = undefined;
+    this.id = "";
   }
 
   Button.prototype.buildSquare = function(id){
+      this.id = id;
     var board = document.getElementById("gameBoard");
     var square = document.createElement("button");
     square.className = "square";
@@ -19,6 +21,9 @@ var button;
 
   Button.prototype.changeStatus = function(status){
     this.status = status;
+    var figure = status==false?"O":"X";
+    var tehBtn = document.getElementById(this.id);
+    tehBtn.innerHTML = figure;
   };
 
   function init(num){
@@ -29,16 +34,22 @@ var button;
       var buttonId = "btn" + i;
       allButtons[i].buildSquare(buttonId);
     }
+    var styles = "<style>.square:nth-child(" + num + "n+" + (num + 1) + "){clear:both;}</style>"
+    document.getElementsByTagName("head")[0].innerHTML += styles;
     return allButtons;
   }
 
   var tehBtns =  init(initNum);
 
+  function checkResult(){
+      
+  }
+
   var clickResponse = function(){
     var btnId = this.id.slice(3);
     var status = counter%2==0?false:true;
-    tehBtns[btnId].status = status;
-    console.log(tehBtns[btnId]);
+    tehBtns[btnId].changeStatus(status);
+    console.log(tehBtns[btnId].id);
     counter++;
   // get button to change status
   }

@@ -6,6 +6,6 @@
   float:left;
 }
 
-.square:nth-child(3n+4) {
+/*.square:nth-child(3n+4) {
   clear:both;
-}
+}*/
