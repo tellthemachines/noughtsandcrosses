@@ -2,8 +2,8 @@ var button;
 
 (function(){
 
-      counter = 0;
-      initNum = 4;
+    var  counter = 0;
+    var  initNum = 6;
 
   function Button() {
     this.status = undefined;
@@ -42,16 +42,80 @@ var button;
   var tehBtns =  init(initNum);
 
   function checkResult(){
-      
+
+      //columns
+      for(var i=0;i<initNum;i++){
+        var currCol = i,
+            colScore = 0;
+        for(var j=0;j<initNum;j++){
+          colScore += tehBtns[currCol].status;
+          currCol += initNum;
+          if(j == initNum-1) {
+            if(colScore == 0) {
+              document.getElementById("score").innerHTML = "noughts win!";
+            }
+            else if(colScore == initNum) {
+              document.getElementById("score").innerHTML = "crosses win!";
+            }
+          }
+        }
+      }
+
+      //rows
+      var currRow = 0;
+      for(var k=0;k<initNum;k++){
+        var rowScore = 0;
+        for(var l=0;l<initNum;l++){
+          rowScore += tehBtns[currRow+l].status;
+          if(l == initNum-1) {
+            if(rowScore == 0) {
+              document.getElementById("score").innerHTML = "noughts win!";
+            }
+            else if(rowScore == initNum) {
+              document.getElementById("score").innerHTML = "crosses win!";
+            }
+          }
+        }
+        currRow += initNum;
+      }
+      // back slash
+      var currBack = 0;
+      var backScore = 0;
+      for (var m=0;m<initNum;m++) {
+        backScore += tehBtns[currBack].status;
+        currBack += initNum + 1;
+        if(m == initNum-1) {
+          if(backScore == 0) {
+            document.getElementById("score").innerHTML = "noughts win!";
+          }
+          else if(backScore == initNum) {
+            document.getElementById("score").innerHTML = "crosses win!";
+          }
+        }
+      }
+      // forward slash
+      var currFwd = initNum-1;
+      var fwdScore = 0;
+      for(var n=0;n<initNum;n++){
+        fwdScore += tehBtns[currFwd].status;
+        currFwd += initNum-1;
+        if(n == initNum-1) {
+          if(backScore == 0) {
+            document.getElementById("score").innerHTML = "noughts win!";
+          }
+          else if(backScore == initNum) {
+            document.getElementById("score").innerHTML = "crosses win!";
+          }
+        }
+      }
   }
 
   var clickResponse = function(){
     var btnId = this.id.slice(3);
     var status = counter%2==0?false:true;
     tehBtns[btnId].changeStatus(status);
-    console.log(tehBtns[btnId].id);
     counter++;
-  // get button to change status
+    checkResult();
   }
 
 
