@@ -1,7 +1,7 @@
 (function(){
 
     var  counter = 0;
-    var  initNum = 6;
+    var  initNum = 4;
 
   // define button constructor
 
@@ -108,10 +108,10 @@
         fwdScore += tehBtns[currFwd].status;
         currFwd += initNum-1;
         if(n == initNum-1) {
-          if(backScore == 0) {
+          if(fwdScore == 0) {
             document.getElementById("score").innerHTML = "noughts win!";
           }
-          else if(backScore == initNum) {
+          else if(fwdScore == initNum) {
             document.getElementById("score").innerHTML = "crosses win!";
           }
         }
