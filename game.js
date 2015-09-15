@@ -1,14 +1,16 @@
-var button;
-
 (function(){
 
     var  counter = 0;
     var  initNum = 6;
 
+  // define button constructor
+
   function Button() {
     this.status = undefined;
     this.id = "";
   }
+
+  // add methods to button prototype
 
   Button.prototype.buildSquare = function(id){
       this.id = id;
@@ -26,6 +28,8 @@ var button;
     tehBtn.innerHTML = figure;
   };
 
+  // init function uses the constructor to generate buttons & returns button array
+
   function init(num){
     var allButtons = [],
         squared = num*num;
@@ -39,7 +43,11 @@ var button;
     return allButtons;
   }
 
+  // then we call init and store the returned button array for further use
+
   var tehBtns =  init(initNum);
+
+  // the result checking function checks each column, row and diagonal for wins (all noughts or all crosses)
 
   function checkResult(){
 
@@ -110,6 +118,8 @@ var button;
       }
   }
 
+  // function for what happens when we click a box
+
   var clickResponse = function(){
     var btnId = this.id.slice(3);
     var status = counter%2==0?false:true;
@@ -118,11 +128,10 @@ var button;
     checkResult();
   }
 
+  // adding click event function to all the boxes
 
-
-
-      for (var j=0;j<initNum*initNum;j++){
-        document.getElementById("btn" + j).onclick = clickResponse;
-      }
+  for (var j=0;j<initNum*initNum;j++){
+    document.getElementById("btn" + j).onclick = clickResponse;
+  }
 
 }());
